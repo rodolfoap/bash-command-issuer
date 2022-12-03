@@ -1,20 +1,21 @@
-# Un dêpot GIT est une collection de plusieurs versions de fichiers dans un répertoire.
+rm -rf /tmp/config-netgear.git ~/config-netgear*
+# Un DÊPOT GIT est une collection de plusieurs VERSIONS de FICHIERS dans un RÉPERTOIRE.
 pwd
 mkdir config-netgear-rodolfo
 cd config-netgear-rodolfo/
 pwd
 git init
 ls -la
-# Dans GIT, une version est simplement un snapshot de l’etat et contenu d’un groupe de fichiers.
+# Dans GIT, une VERSION est simplement un SNAPSHOT de l’etat et contenu d’un groupe de FICHIERS.
 touch README
 echo "gateway=10.0.0.1" >> router.conf
 ls -la
 git status
 git add README router.conf
 git status
-# La commande git commit capture un instantané (une snapshot, une version) des fichiers qui sont suivis (tracked) dans le dêpot.
+# La commande 'git commit' capture un instantané (une SNAPSHOT, une VERSION) des FICHIERS qui sont suivis (TRACKED) dans le DÊPOT.
 git commit -m "Generic configuration Netgear"
-# Une branche n'est qu'une séquence parallèle (ou pas) de commit. La branche par défaut est normalement master
+# Une BRANCHE n'est qu'une séquence parallèle (ou pas) de commit. La BRANCHE par défaut est normalement 'master'.
 git checkout -b axiodis
 ls -la
 echo "nameserver=10.0.0.2" >> router.conf
@@ -23,11 +24,11 @@ git add router.conf
 git status
 git commit -m "DNS added for Axiodis"
 git whatchanged
-# Revenons sur la branche 'master'
+# Revenons sur la BRANCHE 'master'
 git checkout master
 git whatchanged
 cat router.conf
-# Troisieme branche for Keleo, ils ont un deuxieme DNS
+# Troisieme BRANCHE for Keleo, ils ont un deuxieme DNS
 git checkout -b keleo
 echo "nameserver=10.0.0.44" >> router.conf
 cat router.conf
@@ -37,22 +38,24 @@ git add router.conf
 git commit -m "DNS added for Keleo"
 git status
 git whatchanged
-# On a quoi sur la branche Axiodis?
+# On a quoi sur la BRANCHE Axiodis?
 git checkout axiodis
 cat router.conf
-# On a quoi sur la branche master?
+# On a quoi sur la BRANCHE master?
 git checkout master
 cat router.conf
-# On a quoi sur la branche Keleo?
+# On a quoi sur la BRANCHE Keleo?
 git checkout keleo
 cat router.conf
-# Un remote est un référentiel central sur lequel plusieurs clones peuvent travailler simultanément.
+# On crée un REMOTE, pas important.
+(mkdir -p /tmp/config-netgear.git; cd /tmp/config-netgear.git; git init --bare;)
+# Un REMOTE est un référentiel central sur lequel plusieurs CLONES peuvent travailler simultanément.
 git remote add origin /tmp/config-netgear.git
 git status
 git push
 git push --set-upstream origin keleo
 git push --all origin
-# Maintenant, un nouveau collaborateur va nous aider a maintenir la conf. D'abord, il "clone" le dêpot.
+# Maintenant, un nouveau collaborateur va nous aider a maintenir la conf. D'abord, il "CLONE" le dêpot.
 cd
 git clone /tmp/config-netgear.git config-netgear-xavier
 cd config-netgear-xavier/
